@@ -20,7 +20,6 @@ public class GearBoxExemplarMapper {
         GearBoxExemplar gearBoxExemplar = new GearBoxExemplar(gearBoxExemplarDto.getId(),
                 gearBoxExemplarDto.getSerialNumber(),
                 gearBoxExemplarDto.isAvailable());
-                //gearBoxExemplarDto.getAvailable());
         gearBoxExemplar.setGearbox(gearBoxService.getGearBoxById(gearBoxExemplarDto.getGearBoxId()));
         return gearBoxExemplar;
     }
