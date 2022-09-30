@@ -1,6 +1,5 @@
 package com.restap.carshop.domain;
 
-import com.restap.carshop.dto.EngineDto;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Optional;
 
 @Getter
 @Setter

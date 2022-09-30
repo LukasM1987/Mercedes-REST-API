@@ -8,10 +8,7 @@ import com.restap.carshop.mapper.ModelExemplarMapper;
 import com.restap.carshop.service.ModelExemplarsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,13 +22,13 @@ public class ModelExemplarController {
     private final ModelExemplarsService modelExemplarsService;
 
     @RequestMapping(method = RequestMethod.POST, value = "addModelExemplar", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void addModelExemplar(final ModelExemplarDto modelExemplarDto) throws ModelException {
+    public void addModelExemplar(@RequestBody final ModelExemplarDto modelExemplarDto) throws ModelException {
         ModelExemplar modelExemplar = modelExemplarMapper.mapToModelExemplar(modelExemplarDto);
         modelExemplarsService.addModelExemplar(modelExemplar);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "deleteModelExemplar")
-    public void deleteModelExemplar(final Long id) throws ModelExemplarException {
+    public void deleteModelExemplar(@RequestParam final Long id) throws ModelExemplarException {
             modelExemplarsService.deleteModelExemplar(id);
     }
 
@@ -42,19 +39,19 @@ public class ModelExemplarController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "getModelExemplarById")
-    public ModelExemplarDto getModelExemplarById(final Long id) throws ModelExemplarException {
+    public ModelExemplarDto getModelExemplarById(@RequestParam final Long id) throws ModelExemplarException {
         return modelExemplarMapper.mapToModelExemplarDto(
                 modelExemplarsService.findModelExemplarById(id));
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "getModelExemplarBySerialNumber")
-    public ModelExemplarDto getModelExemplarBySerialNumber(final String serialNumber) throws ModelExemplarException {
+    public ModelExemplarDto getModelExemplarBySerialNumber(@RequestParam final String serialNumber) throws ModelExemplarException {
         return modelExemplarMapper.mapToModelExemplarDto(
                 modelExemplarsService.findModelExemplarBySerialNumber(serialNumber));
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "getModelExemplarByAvailable")
-    public ModelExemplarDto getModelExemplarByAvailable(final boolean available) throws ModelExemplarException {
+    public ModelExemplarDto getModelExemplarByAvailable(@RequestParam final boolean available) throws ModelExemplarException {
         return modelExemplarMapper.mapToModelExemplarDto(
                 modelExemplarsService.findModelExemplarByAvailable(available));
     }
