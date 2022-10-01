@@ -27,12 +27,8 @@ public class SeatController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "deleteSeat")
-    public void deleteSeat(@RequestParam final Long id) throws SeatException {
-        if (seatService.getSeatById(id).isPresent()) {
-            seatService.deleteSeat(id);
-        } else {
-            throw new SeatException();
-        }
+    public void deleteSeat(@RequestParam final Long id) {
+        seatService.deleteSeat(id);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "getSeats")
@@ -43,11 +39,11 @@ public class SeatController {
 
     @RequestMapping(method = RequestMethod.GET, value = "getSeatById")
     public SeatDto getSeat(@RequestParam final Long id) throws SeatException {
-        return seatMapper.mapToSeatDto(seatService.getSeatById(id).orElseThrow(SeatException::new));
+        return seatMapper.mapToSeatDto(seatService.getSeatById(id));
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "getSeatByType")
     public SeatDto getSeatByType(@RequestParam final String type) throws SeatException {
-        return seatMapper.mapToSeatDto(seatService.getSeatByType(type).orElseThrow(SeatException::new));
+        return seatMapper.mapToSeatDto(seatService.getSeatByType(type));
     }
 }

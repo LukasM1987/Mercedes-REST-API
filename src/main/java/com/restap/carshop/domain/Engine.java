@@ -35,7 +35,7 @@ public class Engine {
     @Column(name = "PRICE")
     private double price;
 
-    @OneToMany(targetEntity = EngineExemplar.class, mappedBy = "engine", cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = EngineExemplar.class, mappedBy = "engine", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<EngineExemplar> engineExemplarList = new ArrayList<>();
 
     public Engine(Long id, String type, int hp, double price) {

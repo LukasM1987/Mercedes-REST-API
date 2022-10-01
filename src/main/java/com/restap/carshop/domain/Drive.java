@@ -31,7 +31,7 @@ public class Drive {
     @Column(name = "PRICE")
     private double price;
 
-    @OneToMany(targetEntity = Car.class, mappedBy = "drive")
+    @OneToMany(targetEntity = Car.class, mappedBy = "drive", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Car> carList = new ArrayList<>();
 
     public Drive(Long id, String type, double price) {

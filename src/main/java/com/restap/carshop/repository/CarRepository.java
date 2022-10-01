@@ -11,6 +11,7 @@ import java.util.Optional;
 @Transactional
 public interface CarRepository extends CrudRepository<Car, Long> {
 
+    @Override
     Optional<Car> findById(Long id);
 
 }

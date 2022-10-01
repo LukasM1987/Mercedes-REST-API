@@ -29,7 +29,7 @@ public class GearBoxExemplar {
     @Column(name = "IS_AVAILABLE")
     private boolean available;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "GEARBOXES_ID")
     private GearBox gearbox;
 

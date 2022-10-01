@@ -28,11 +28,7 @@ public class ColorController {
 
     @RequestMapping(method = RequestMethod.DELETE, value = "deleteColor")
     public void deleteColor(final Long id) throws ColorException {
-        if (colorService.getColor(id).isPresent()) {
-            colorService.deleteColor(id);
-        } else {
-            throw new ColorException();
-        }
+        colorService.deleteColor(id);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "getColors")
@@ -43,11 +39,11 @@ public class ColorController {
 
     @RequestMapping(method = RequestMethod.GET, value = "getColor")
     public ColorDto getColorById(@RequestParam final Long id) throws ColorException {
-        return colorMapper.mapToColorDto(colorService.getColor(id).orElseThrow(ColorException::new));
+        return colorMapper.mapToColorDto(colorService.getColorById(id));
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "getColorByName")
     public ColorDto getColorByName(@RequestParam final String name) throws ColorException {
-        return colorMapper.mapToColorDto(colorService.getColorByName(name).orElseThrow(ColorException::new));
+        return colorMapper.mapToColorDto(colorService.getColorByName(name));
     }
 }

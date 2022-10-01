@@ -25,15 +25,21 @@ public class Car {
     @Column(name = "QUANTITY")
     private int quantity;
 
-    @OneToOne
+    /*
+    @NotNull
+    @Column(name = "CAR_PRICES")
+    private double carPrice;
+    */
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "MODEL_EXEMPLAR_ID")
     private ModelExemplar modelExemplar;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "ENGINE_EXEMPLAR_ID")
     private EngineExemplar engineExemplar;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "GEARBOX_EXEMPLAR_ID")
     private GearBoxExemplar gearBoxExemplar;
 
@@ -49,9 +55,8 @@ public class Car {
     @JoinColumn(name = "SEAT_ID")
     private Seat seat;
 
-    /*
-    @ManyToOne
-    @JoinColumn(name = "ORDER_ID")
-    private Order order;
-    */
+    public Car(Long ind, int quantity) {
+        this.ind = ind;
+        this.quantity = quantity;
+    }
 }

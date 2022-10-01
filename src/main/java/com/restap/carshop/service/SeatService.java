@@ -1,6 +1,7 @@
 package com.restap.carshop.service;
 
 import com.restap.carshop.domain.Seat;
+import com.restap.carshop.exception.SeatException;
 import com.restap.carshop.repository.SeatRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,12 +23,12 @@ public class SeatService {
         return seatRepository.findAll();
     }
 
-    public Optional<Seat> getSeatById(final Long id) {
-        return seatRepository.findById(id);
+    public Seat getSeatById(final Long id) throws SeatException {
+        return seatRepository.findById(id).orElseThrow(SeatException::new);
     }
 
-    public Optional<Seat> getSeatByType(final String type) {
-        return seatRepository.findByType(type);
+    public Seat getSeatByType(final String type) throws SeatException {
+        return seatRepository.findByType(type).orElseThrow(SeatException::new);
     }
 
     public void deleteSeat(final Long id) {

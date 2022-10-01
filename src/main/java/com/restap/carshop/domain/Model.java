@@ -35,7 +35,7 @@ public class Model {
     @Column(name = "PRICE")
     private double price;
 
-    @OneToMany(targetEntity = ModelExemplar.class, mappedBy = "model")
+    @OneToMany(targetEntity = ModelExemplar.class, mappedBy = "model", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<ModelExemplar> modelExemplarList = new ArrayList<>();
 
     public Model(Long id, String carClass, String type, double price) {
