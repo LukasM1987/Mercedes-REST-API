@@ -8,12 +8,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
 public class CarService {
 
+    /*
     private final ModelExemplarRepository modelExemplarRepository;
     private final EngineExemplarRepository engineExemplarRepository;
     private final GearBoxesExemplarsRepository gearBoxesExemplarsRepository;
@@ -21,7 +20,9 @@ public class CarService {
     private final ColorRepository colorRepository;
     private final DriveRepository driveRepository;
     private final SeatRepository seatRepository;
-    private final CarRepository carRepository;
+    */
+
+    private CarRepository carRepository;
 
     private double modelPrice, enginePrice, gearBoxPrice, colorPrice, drivePrice, seatPrice;
 
@@ -59,6 +60,11 @@ public class CarService {
         return car;
     }
     */
+
+    @Autowired
+    public CarService(CarRepository carRepository) {
+        this.carRepository = carRepository;
+    }
 
     public Car addCar(final Car car) {
         return carRepository.save(car);
