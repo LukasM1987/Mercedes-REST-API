@@ -49,7 +49,7 @@ public class User {
     @Column(name = "LOCAL")
     private String local;
 
-    @OneToMany(targetEntity = Order.class, mappedBy = "user")
+    @OneToMany(targetEntity = Order.class, mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<Order> orderList = new ArrayList<>();
 
     public User(Long id, String pesel, String name, String secondName, String city, String street, String house, String local) {

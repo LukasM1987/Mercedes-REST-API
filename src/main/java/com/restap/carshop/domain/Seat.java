@@ -39,7 +39,7 @@ public class Seat {
     @Column(name = "PRICE")
     private double price;
 
-    @OneToMany(targetEntity = Car.class, mappedBy = "seat")
+    @OneToMany(targetEntity = Car.class, mappedBy = "seat", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Car> carList = new ArrayList<>();
 
     public Seat(Long id, String type, String material, String color, double price) {

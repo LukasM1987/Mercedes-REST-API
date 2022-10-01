@@ -31,7 +31,7 @@ public class Color {
     @Column(name = "PRICE")
     private double price;
 
-    @OneToMany(targetEntity = Car.class, mappedBy = "color")
+    @OneToMany(targetEntity = Car.class, mappedBy = "color", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Car> carList = new ArrayList<>();
 
     public Color(Long id, String colorName, double price) {

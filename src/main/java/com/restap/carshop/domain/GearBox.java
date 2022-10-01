@@ -35,7 +35,7 @@ public class GearBox {
     @Column(name = "PRICE")
     private double price;
 
-    @OneToMany(targetEntity = GearBoxExemplar.class, mappedBy = "gearbox", cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = GearBoxExemplar.class, mappedBy = "gearbox", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<GearBoxExemplar> gearBoxExemplarList = new ArrayList<>();
 
     public GearBox(Long id, String type, int gearsQuantity, double price) {

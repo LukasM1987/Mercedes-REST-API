@@ -1,6 +1,7 @@
 package com.restap.carshop.service;
 
 import com.restap.carshop.domain.Drive;
+import com.restap.carshop.exception.DriveException;
 import com.restap.carshop.repository.DriveRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,11 +23,15 @@ public class DriveService {
         return driveRepository.findAll();
     }
 
-    public Optional<Drive> getDrive(final Long id) {
-        return driveRepository.findById(id);
+    public Drive getDriveById(final Long id) throws DriveException {
+        return driveRepository.findById(id).orElseThrow(DriveException::new);
     }
 
-    public void deleteDrive(final Long id) {
-        driveRepository.deleteById(id);
+    public void deleteDrive(final Long id) throws DriveException {
+        if (driveRepository.findById(id).isPresent()) {
+            driveRepository.deleteById(id);
+        } else {
+            throw new DriveException();
+        }
     }
 }

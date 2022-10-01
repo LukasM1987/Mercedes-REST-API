@@ -29,7 +29,7 @@ public class EngineExemplar {
     @Column(name = "IS_AVAILABLE")
     private boolean available;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "ENGINE_ID")
     private Engine engine;
 

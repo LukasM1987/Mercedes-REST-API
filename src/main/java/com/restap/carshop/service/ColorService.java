@@ -1,6 +1,7 @@
 package com.restap.carshop.service;
 
 import com.restap.carshop.domain.Color;
+import com.restap.carshop.exception.ColorException;
 import com.restap.carshop.repository.ColorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,15 +23,19 @@ public class ColorService {
         return colorRepository.findAll();
     }
 
-    public Optional<Color> getColor(final Long id) {
-        return colorRepository.findById(id);
+    public Color getColorById(final Long id) throws ColorException {
+        return colorRepository.findById(id).orElseThrow(ColorException::new);
     }
 
-    public Optional<Color> getColorByName(final String name) {
-        return colorRepository.findByColorName(name);
+    public Color getColorByName(final String name) throws ColorException {
+        return colorRepository.findByColorName(name).orElseThrow(ColorException::new);
     }
 
-    public void deleteColor(final Long id) {
-        colorRepository.deleteById(id);
+    public void deleteColor(final Long id) throws ColorException {
+        if (colorRepository.findById(id).isPresent()) {
+            colorRepository.deleteById(id);
+        } else {
+            throw new ColorException();
+        }
     }
 }

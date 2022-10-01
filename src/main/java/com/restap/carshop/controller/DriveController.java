@@ -28,11 +28,7 @@ public class DriveController {
 
     @RequestMapping(method = RequestMethod.DELETE, value = "deleteDrive")
     public void deleteDrive(@RequestParam final Long id) throws DriveException {
-        if (driveService.getDrive(id).isPresent()) {
-            driveService.deleteDrive(id);
-        } else {
-            throw new DriveException();
-        }
+        driveService.deleteDrive(id);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "getDrives")
@@ -43,6 +39,6 @@ public class DriveController {
 
     @RequestMapping(method = RequestMethod.GET, value = "getDrive")
     public DriveDto getDrive(@RequestParam final Long id) throws DriveException {
-        return driveMapper.mapToDriveDto(driveService.getDrive(id).orElseThrow(DriveException::new));
+        return driveMapper.mapToDriveDto(driveService.getDriveById(id));
     }
 }
