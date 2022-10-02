@@ -19,13 +19,10 @@ public class Car {
     @GeneratedValue
     @NotNull
     @Column(name = "CAR_ID", unique = true)
-    private Long ind;
+    private Long id;
 
-    /*
-    @NotNull
     @Column(name = "CAR_PRICES")
     private double carPrice;
-    */
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "MODEL_EXEMPLAR_ID")
@@ -51,7 +48,7 @@ public class Car {
     @JoinColumn(name = "SEAT_ID")
     private Seat seat;
 
-    public Car(Long ind) {
-        this.ind = ind;
+    public Car(Long id) {
+        this.id = id;
     }
 }
