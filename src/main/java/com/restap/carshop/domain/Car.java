@@ -21,10 +21,6 @@ public class Car {
     @Column(name = "CAR_ID", unique = true)
     private Long ind;
 
-    @NotNull
-    @Column(name = "QUANTITY")
-    private int quantity;
-
     /*
     @NotNull
     @Column(name = "CAR_PRICES")
@@ -55,8 +51,7 @@ public class Car {
     @JoinColumn(name = "SEAT_ID")
     private Seat seat;
 
-    public Car(Long ind, int quantity) {
+    public Car(Long ind) {
         this.ind = ind;
-        this.quantity = quantity;
     }
 }
