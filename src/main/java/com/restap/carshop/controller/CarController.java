@@ -19,7 +19,7 @@ public class CarController {
     private CarService carService;
 
     @RequestMapping(method = RequestMethod.POST, value = "addCar", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void addCar(@RequestBody final CarDto carDto) throws DriveException, ColorException, SeatException, EngineExemplarException, GearBoxExemplarException, ModelExemplarException, GearBoxException {
+    public void addCar(@RequestBody final CarDto carDto) throws DriveException, ColorException, SeatException, EngineExemplarException, GearBoxExemplarException, ModelExemplarException {
         Car car = carMapper.mapToCar(carDto);
         carService.addCar(car);
     }
@@ -27,5 +27,10 @@ public class CarController {
     @RequestMapping(method = RequestMethod.GET, value = "getCar")
     public CarDto getCar(@RequestParam final Long id) throws CarException {
         return carMapper.mapToDriveDto(carService.findCarById(id));
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "deleteCar")
+    public void deleteCar(final Long id) throws CarException {
+        carService.deleteCar(id);
     }
 }
