@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class CarController {
 
-    private CarMapper carMapper;
-    private CarService carService;
+    private final CarMapper carMapper;
+    private final CarService carService;
 
     @RequestMapping(method = RequestMethod.POST, value = "addCar", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void addCar(@RequestBody final CarDto carDto) throws DriveException, ColorException, SeatException, EngineExemplarException, GearBoxExemplarException, ModelExemplarException {
