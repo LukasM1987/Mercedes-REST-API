@@ -48,6 +48,10 @@ public class Car {
     @JoinColumn(name = "SEAT_ID")
     private Seat seat;
 
+    @ManyToOne
+    @JoinColumn(name = "ORDER_ID")
+    private Order order;
+
     public Car(Long id) {
         this.id = id;
     }

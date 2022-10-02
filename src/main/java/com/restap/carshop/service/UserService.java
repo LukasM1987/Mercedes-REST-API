@@ -3,6 +3,7 @@ package com.restap.carshop.service;
 import com.restap.carshop.domain.User;
 import com.restap.carshop.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +13,12 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserService {
 
-    private final UserRepository userRepository;
+    private UserRepository userRepository;
+
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public User addUser(final User user) {
         return userRepository.save(user);
