@@ -54,4 +54,11 @@ public class EngineExemplarController {
         return engineExemplarMapper.mapToEngineExemplarDto(
                 engineExemplarService.findEngineExemplarByAvailable(available).orElseThrow(EngineExemplarException::new));
     }
+
+    @RequestMapping(method = RequestMethod.PUT, value = "updateEngineExemplar")
+    public EngineExemplarDto updateEngineExemplar(@RequestBody final EngineExemplarDto engineExemplarDto) throws EngineException {
+        EngineExemplar engineExemplar = engineExemplarMapper.mapToEngineExemplar(engineExemplarDto);
+        EngineExemplar updateExemplar = engineExemplarService.addEngineExemplar(engineExemplar);
+        return engineExemplarMapper.mapToEngineExemplarDto(updateExemplar);
+    }
 }

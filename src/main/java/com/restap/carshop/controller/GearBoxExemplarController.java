@@ -1,7 +1,10 @@
 package com.restap.carshop.controller;
 
+import com.restap.carshop.domain.EngineExemplar;
 import com.restap.carshop.domain.GearBoxExemplar;
+import com.restap.carshop.dto.EngineExemplarDto;
 import com.restap.carshop.dto.GearBoxExemplarDto;
+import com.restap.carshop.exception.EngineException;
 import com.restap.carshop.exception.GearBoxException;
 import com.restap.carshop.exception.GearBoxExemplarException;
 import com.restap.carshop.mapper.GearBoxExemplarMapper;
@@ -54,5 +57,12 @@ public class GearBoxExemplarController {
     public GearBoxExemplarDto getGearBoxExemplarByAvailable(@RequestParam final boolean available) throws GearBoxExemplarException {
         return gearBoxExemplarMapper.mapToGearBoxExemplarDto(
                 gearBoxExemplarService.findEngineExemplarByAvailable(available));
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, value = "updateGearBoxExemplar")
+    public GearBoxExemplarDto updateGearBoxExemplar(@RequestBody final GearBoxExemplarDto gearBoxExemplarDto) throws GearBoxException {
+        GearBoxExemplar gearBoxExemplar = gearBoxExemplarMapper.mapToGearBoxExemplar(gearBoxExemplarDto);
+        GearBoxExemplar updateExemplar = gearBoxExemplarService.addGearBoxExemplar(gearBoxExemplar);
+        return gearBoxExemplarMapper.mapToGearBoxExemplarDto(updateExemplar);
     }
 }

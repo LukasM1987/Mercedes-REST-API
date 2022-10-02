@@ -8,6 +8,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -30,18 +32,14 @@ public class Order {
     @Column(name = "ORDER_CREATION_DATE")
     private LocalDateTime localDateTime;
 
-    /*
-    @OneToMany(targetEntity = Car.class, mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Car.class, mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Car> carList = new ArrayList<>();
-    */
 
     @NotNull
     @Column(name = "TOTAL_PRICE")
     private double totalPrice;
 
-    @OneToOne
-    @JoinColumn(name = "CAR_ID")
-    private Car car;
-
-
+    public Order(Long id) {
+        this.id = id;
+    }
 }
