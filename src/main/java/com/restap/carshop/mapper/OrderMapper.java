@@ -1,13 +1,9 @@
 package com.restap.carshop.mapper;
 
-import com.restap.carshop.domain.Car;
 import com.restap.carshop.domain.Order;
-import com.restap.carshop.dto.CarDto;
 import com.restap.carshop.dto.OrderDto;
 
-import com.restap.carshop.exception.CarException;
 import com.restap.carshop.exception.UserException;
-import com.restap.carshop.service.CarService;
 import com.restap.carshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

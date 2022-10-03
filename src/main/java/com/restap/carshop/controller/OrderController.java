@@ -32,11 +32,11 @@ public class OrderController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "deleteOrder")
-    public void deleteOrder(final Long id) throws OrderException {
+    public void deleteOrder(@RequestParam final Long id) throws OrderException {
         orderService.deleteOrder(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "addCarToTheOrder")
+    @RequestMapping(method = RequestMethod.PUT, value = "addCarToTheOrder")
     public OrderDto addCarToTheOrder(@RequestParam final Long orderId, final Long carId) throws CarException, OrderException {
         Order order = orderService.addCarToTheOrder(orderId, carId);
         return orderMapper.mapToOrderDto(order);

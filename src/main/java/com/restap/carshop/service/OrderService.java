@@ -44,12 +44,9 @@ public class OrderService {
         Car car = carRepository.findById(carId).orElseThrow(CarException::new);
         order.getCarList().add(car);
         double finalPrice = 0;
-        System.err.println(order.getCarList().size());
         for (int i = 0; i < order.getCarList().size(); i++) {
             finalPrice = finalPrice + order.getCarList().get(i).getCarPrice();
-            System.err.println("WYKONUJE");
         }
-        System.err.println(finalPrice);
         order.setTotalPrice(finalPrice);
         return orderRepository.save(order);
     }
