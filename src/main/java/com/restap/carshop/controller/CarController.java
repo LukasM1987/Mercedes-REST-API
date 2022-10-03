@@ -26,7 +26,7 @@ public class CarController {
 
     @RequestMapping(method = RequestMethod.GET, value = "getCar")
     public CarDto getCar(@RequestParam final Long id) throws CarException {
-        return carMapper.mapToDriveDto(carService.findCarById(id));
+        return carMapper.mapToCarDto(carService.findCarById(id));
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "deleteCar")

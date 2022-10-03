@@ -7,6 +7,9 @@ import com.restap.carshop.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class CarMapper {
 
@@ -59,7 +62,7 @@ public class CarMapper {
         return car;
     }
 
-    public CarDto mapToDriveDto(final Car car) {
+    public CarDto mapToCarDto(final Car car) {
         return new CarDto(car.getId(),
                 car.getCarPrice(),
                 car.getModelExemplar().getId(),
@@ -68,5 +71,9 @@ public class CarMapper {
                 car.getColor().getId(),
                 car.getDrive().getId(),
                 car.getSeat().getId());
+    }
+
+    public List<CarDto> mapToCarDtoList(final List<Car> cars) {
+        return cars.stream().map(this::mapToCarDto).collect(Collectors.toList());
     }
 }

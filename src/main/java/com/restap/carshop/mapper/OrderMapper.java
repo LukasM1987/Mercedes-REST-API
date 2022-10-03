@@ -21,21 +21,12 @@ public class OrderMapper {
     private UserService userService;
 
     @Autowired
-    private CarService carService;
-
-    private double totalPrice;
+    private CarMapper carMapper;
 
     public Order mapToOrder(final OrderDto orderDto) throws UserException {
         Order order = new Order(orderDto.getId());
         order.setUser(userService.getUserById(orderDto.getUserId()).orElseThrow(UserException::new));
         order.setLocalDateTime(LocalDateTime.now());
-        order.setCarList(orderDto.getCarsList());
-        /*
-        for (Car cars : orderDto.getCarsList()) {
-            totalPrice = totalPrice + cars.getCarPrice();
-        }
-        order.setTotalPrice(totalPrice);
-        */
         return order;
     }
 
@@ -43,7 +34,7 @@ public class OrderMapper {
         return new OrderDto(order.getId(),
                 order.getUser().getId(),
                 order.getLocalDateTime(),
-                order.getCarList(),
+                carMapper.mapToCarDtoList(order.getCarList()),
                 order.getTotalPrice());
     }
 }

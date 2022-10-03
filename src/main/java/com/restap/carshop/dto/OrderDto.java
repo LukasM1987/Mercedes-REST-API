@@ -27,7 +27,7 @@ public class OrderDto {
     private LocalDateTime orderCreationDate;
 
     @JsonProperty("carsList")
-    private List<Car> carsList;
+    private List<CarDto> carsList;
 
     @JsonProperty("totalPrice")
     private double totalPrice;

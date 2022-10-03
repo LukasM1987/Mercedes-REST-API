@@ -2,14 +2,13 @@ package com.restap.carshop.service;
 
 import com.restap.carshop.domain.Car;
 import com.restap.carshop.domain.Order;
+import com.restap.carshop.exception.CarException;
 import com.restap.carshop.exception.OrderException;
 import com.restap.carshop.repository.CarRepository;
 import com.restap.carshop.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -38,5 +37,20 @@ public class OrderService {
 
     public Order findOrderById(final Long id) throws OrderException {
         return orderRepository.findById(id).orElseThrow(OrderException::new);
+    }
+
+    public Order addCarToTheOrder(final Long orderId, final Long carId) throws OrderException, CarException {
+        Order order = orderRepository.findById(orderId).orElseThrow(OrderException::new);
+        Car car = carRepository.findById(carId).orElseThrow(CarException::new);
+        order.getCarList().add(car);
+        double finalPrice = 0;
+        System.err.println(order.getCarList().size());
+        for (int i = 0; i < order.getCarList().size(); i++) {
+            finalPrice = finalPrice + order.getCarList().get(i).getCarPrice();
+            System.err.println("WYKONUJE");
+        }
+        System.err.println(finalPrice);
+        order.setTotalPrice(finalPrice);
+        return orderRepository.save(order);
     }
 }
