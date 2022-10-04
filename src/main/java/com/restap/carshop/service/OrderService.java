@@ -42,12 +42,19 @@ public class OrderService {
     public Order addCarToTheOrder(final Long orderId, final Long carId) throws OrderException, CarException {
         Order order = orderRepository.findById(orderId).orElseThrow(OrderException::new);
         Car car = carRepository.findById(carId).orElseThrow(CarException::new);
-        order.getCarList().add(car);
-        double finalPrice = 0;
-        for (int i = 0; i < order.getCarList().size(); i++) {
-            finalPrice = finalPrice + order.getCarList().get(i).getCarPrice();
+        if (carRepository.findById(carId).get().isAvailable()) {
+            car.setAvailable(false);
+            car.setOrder(order);
+            carRepository.save(car);
+            order.getCarList().add(car);
+            double finalPrice = 0;
+            for (int i = 0; i < order.getCarList().size(); i++) {
+                finalPrice = finalPrice + order.getCarList().get(i).getCarPrice();
+            }
+            order.setTotalPrice(finalPrice);
+            return orderRepository.save(order);
+        } else {
+            throw new CarException();
         }
-        order.setTotalPrice(finalPrice);
-        return orderRepository.save(order);
     }
 }

@@ -29,7 +29,7 @@ public class CarMapper {
     private double modelPrice, enginePrice, gearBoxPrice, colorPrice, drivePrice, seatPrice;
 
     public Car mapToCar(final CarDto carDto) throws ModelExemplarException, EngineExemplarException, GearBoxExemplarException, ColorException, DriveException, SeatException {
-        Car car = new Car(carDto.getId());
+        Car car = new Car(carDto.getId(), carDto.isAvailable());
         if (modelExemplarService.findModelExemplarById(carDto.getModelExemplarId()).isAvailable()) {
             car.setModelExemplar(modelExemplarService.findModelExemplarById(carDto.getModelExemplarId()));
             modelExemplarService.findModelExemplarById(carDto.getModelExemplarId()).setAvailable(false);
@@ -65,6 +65,7 @@ public class CarMapper {
     public CarDto mapToCarDto(final Car car) {
         return new CarDto(car.getId(),
                 car.getCarPrice(),
+                car.isAvailable(),
                 car.getModelExemplar().getId(),
                 car.getEngineExemplar().getId(),
                 car.getGearBoxExemplar().getId(),

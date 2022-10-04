@@ -24,6 +24,10 @@ public class Car {
     @Column(name = "CAR_PRICES")
     private double carPrice;
 
+    @NotNull
+    @Column(name = "AVAILABLE")
+    private boolean available;
+
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "MODEL_EXEMPLAR_ID")
     private ModelExemplar modelExemplar;
@@ -52,7 +56,8 @@ public class Car {
     @JoinColumn(name = "ORDER_ID")
     private Order order;
 
-    public Car(Long id) {
+    public Car(Long id, boolean available) {
         this.id = id;
+        this.available = available;
     }
 }

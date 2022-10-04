@@ -19,6 +19,9 @@ public class CarDto {
     @JsonProperty("carPrice")
     private double carPrice;
 
+    @JsonProperty("available")
+    private boolean available;
+
     @JsonProperty("modelExemplarId")
     private Long modelExemplarId;
 
