@@ -43,7 +43,7 @@ public class OrderService {
         Order order = orderRepository.findById(orderId).orElseThrow(OrderException::new);
         Car car = carRepository.findById(carId).orElseThrow(CarException::new);
         if (carRepository.findById(carId).get().isAvailable()) {
-            car.setAvailable(false);
+            //carRepository.findById(carId).get().setAvailable(false);
             car.setOrder(order);
             carRepository.save(car);
             order.getCarList().add(car);
