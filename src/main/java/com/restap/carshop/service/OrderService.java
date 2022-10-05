@@ -43,15 +43,15 @@ public class OrderService {
         Order order = orderRepository.findById(orderId).orElseThrow(OrderException::new);
         Car car = carRepository.findById(carId).orElseThrow(CarException::new);
         if (carRepository.findById(carId).get().isAvailable()) {
-            //carRepository.findById(carId).get().setAvailable(false);
+            carRepository.findById(carId).get().setAvailable(false);
             car.setOrder(order);
-            carRepository.save(car);
             order.getCarList().add(car);
             double finalPrice = 0;
             for (int i = 0; i < order.getCarList().size(); i++) {
                 finalPrice = finalPrice + order.getCarList().get(i).getCarPrice();
             }
             order.setTotalPrice(finalPrice);
+            carRepository.save(car);
             return orderRepository.save(order);
         } else {
             throw new CarException();
