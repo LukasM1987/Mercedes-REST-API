@@ -39,4 +39,9 @@ public class Color {
         this.colorName = colorName;
         this.price = price;
     }
+
+    public Color(String colorName, double price) {
+        this.colorName = colorName;
+        this.price = price;
+    }
 }

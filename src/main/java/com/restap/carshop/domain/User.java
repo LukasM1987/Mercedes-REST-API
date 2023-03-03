@@ -62,4 +62,14 @@ public class User {
         this.house = house;
         this.local = local;
     }
+
+    public User(String pesel, String name, String secondName, String city, String street, String house, String local) {
+        this.pesel = pesel;
+        this.name = name;
+        this.secondName = secondName;
+        this.city = city;
+        this.street = street;
+        this.house = house;
+        this.local = local;
+    }
 }

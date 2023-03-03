@@ -44,4 +44,10 @@ public class Engine {
         this.hp = hp;
         this.price = price;
     }
+
+    public Engine(String type, int hp, double price) {
+        this.type = type;
+        this.hp = hp;
+        this.price = price;
+    }
 }

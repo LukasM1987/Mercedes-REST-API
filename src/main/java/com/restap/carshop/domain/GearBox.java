@@ -44,4 +44,10 @@ public class GearBox {
         this.gearsQuantity = gearsQuantity;
         this.price = price;
     }
+
+    public GearBox(String type, int gearsQuantity, double price) {
+        this.type = type;
+        this.gearsQuantity = gearsQuantity;
+        this.price = price;
+    }
 }

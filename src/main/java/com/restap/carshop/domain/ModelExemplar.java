@@ -38,4 +38,9 @@ public class ModelExemplar {
         this.vin = vin;
         this.available = available;
     }
+
+    public ModelExemplar(String vin, boolean available) {
+        this.vin = vin;
+        this.available = available;
+    }
 }

@@ -38,4 +38,9 @@ public class GearBoxExemplar {
         this.serialNumber = serialNumber;
         this.available = available;
     }
+
+    public GearBoxExemplar(String serialNumber, boolean available) {
+        this.serialNumber = serialNumber;
+        this.available = available;
+    }
 }
