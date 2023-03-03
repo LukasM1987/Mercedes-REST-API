@@ -38,4 +38,9 @@ public class EngineExemplar {
         this.serialNumber = serialNumber;
         this.available = available;
     }
+
+    public EngineExemplar(String serialNumber, boolean available) {
+        this.serialNumber = serialNumber;
+        this.available = available;
+    }
 }

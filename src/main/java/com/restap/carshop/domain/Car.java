@@ -60,4 +60,8 @@ public class Car {
         this.id = id;
         this.available = available;
     }
+
+    public Car(boolean available) {
+        this.available = available;
+    }
 }

@@ -49,4 +49,11 @@ public class Seat {
         this.color = color;
         this.price = price;
     }
+
+    public Seat(String type, String material, String color, double price) {
+        this.type = type;
+        this.material = material;
+        this.color = color;
+        this.price = price;
+    }
 }

@@ -44,4 +44,10 @@ public class Model {
         this.type = type;
         this.price = price;
     }
+
+    public Model(String carClass, String type, double price) {
+        this.carClass = carClass;
+        this.type = type;
+        this.price = price;
+    }
 }
