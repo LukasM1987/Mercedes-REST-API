@@ -75,7 +75,6 @@
 >`{
 "vin": "SDJFH5627SDFJ34874SFH",
 "available": true,
-"price": 99.99,
 "modelId": 1
 }`
 >### Car object
